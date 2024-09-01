@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laptops | Your E-commerce Website</title>
+  <style>
+    /* Global Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9f9;
+      background-size: cover;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    header nav ul li {
+      margin-right: 20px;
+    }
+
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    header nav a:hover {
+      color: #ccc;
+    }
+
+    /* Laptop Section Styles */
+    #laptops {
+      padding: 20px;
+      background-color: #f4f4f4;
+      background-image: none;
+    }
+
+    .laptop-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .laptop-card {
+      background-color: white;
+      margin: 10px;
+      padding: 15px;
+      border-radius: 5px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 30%;
+      box-sizing: border-box;
+    }
+
+    .laptop-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .laptop-card h3 {
+      font-size: 20px;
+      color: #333;
+    }
+
+    .laptop-card p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .laptop-card button {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .laptop-card button:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/home.html">Home</a></li>
+        <li><a href="/smartphone.html">Smartphones</a></li>
+        <li><a href="/laptop.html">Laptops</a></li>
+        <li><a href="/watch.html">Watches</a></li>
+        <li><a href="/tv.html">TVs</a></li>
+        <li><a href="/camera.html">Cameras</a></li>
+        <li><a href="/cart.html">Cart</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <!-- Laptop Section -->
+  <section id="laptops">
+    <h1>Laptops</h1>
+    <p>Explore our collection of latest laptops from top brands.</p>
+    <div class="laptop-grid">
+      <!-- Laptop 1 -->
+      <div class="laptop-card">
+        <img src="https://www.apple.com/newsroom/images/product/mac/standard/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large.jpg" alt="Laptop 1">
+        <h3>Apple MacBook Pro</h3>
+        <p>16" Retina Display, 16GB RAM, 512GB Storage</p>
+        <p>Price: ₹197,591.74</p>
+        <button onclick="addToCart('Apple MacBook Pro', '₹197,591.74', 'https://www.apple.com/newsroom/images/product/mac/standard/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large.jpg')">Add to Cart</button>
+      </div>
+      <!-- Laptop 2 -->
+      <div class="laptop-card">
+        <img src="https://static.digit.in/default/xpsfull-32efab736c.jpeg" alt="Laptop 2">
+        <h3>Dell XPS 13</h3>
+        <p>13.4" FHD Display, 8GB RAM, 256GB Storage</p>
+        <p>Price: ₹107,591.40</p>
+        <button onclick="addToCart('Dell XPS 13', '₹107,591.40', 'https://static.digit.in/default/xpsfull-32efab736c.jpeg')">Add to Cart</button>
+      </div>
+      <!-- Laptop 3 -->
+      <div class="laptop-card">
+        <img src="https://img.etimg.com/thumb/width-1200,height-1200,imgsize-54389,resizemode-75,msid-59997445/magazines/panache/hp-spectre-x360-review-a-sleek-and-powerful-convertible.jpg" alt="Laptop 3">
+        <h3>HP Spectre x360</h3>
+        <p>13.3" OLED Display, 16GB RAM, 1TB Storage</p>
+        <p>Price: ₹132,253.51</p>
+        <button onclick="addToCart('HP Spectre x360', '₹132,253.51', 'https://img.etimg.com/thumb/width-1200,height-1200,imgsize-54389,resizemode-75,msid-59997445/magazines/panache/hp-spectre-x360-review-a-sleek-and-powerful-convertible.jpg')">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function addToCart(name, price, imgSrc) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existingItem = cart.find(item => item.name === name);
+      
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({
+          name: name,
+          price: price,
+          imgSrc: imgSrc,
+          quantity: 1
+        });
+      }
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert('Product added to cart!');
+    }
+  </script>
+</body>
+</html>

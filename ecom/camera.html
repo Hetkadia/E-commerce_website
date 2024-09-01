@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cameras | Your E-commerce Website</title>
+  <style>
+    /* Global Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9f9;
+      background-size: cover;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    header nav ul li {
+      margin-right: 20px;
+    }
+
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    header nav a:hover {
+      color: #ccc;
+    }
+
+    /* Camera Section Styles */
+    #cameras {
+      padding: 20px;
+      background-color: #f4f4f4;
+      background-image: none;
+    }
+
+    .camera-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .camera-card {
+      background-color: white;
+      margin: 10px;
+      padding: 15px;
+      border-radius: 5px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 30%;
+      box-sizing: border-box;
+    }
+
+    .camera-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .camera-card h3 {
+      font-size: 20px;
+      color: #333;
+    }
+
+    .camera-card p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .camera-card button {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .camera-card button:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/home.html">Home</a></li>
+        <li><a href="/smartphone.html">Smartphones</a></li>
+        <li><a href="/laptop.html">Laptops</a></li>
+        <li><a href="/watch.html">Watches</a></li>
+        <li><a href="/tv.html">TVs</a></li>
+        <li><a href="/camera.html">Cameras</a></li>
+        <li><a href="/cart.html">Cart</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <!-- Camera Section -->
+  <section id="cameras">
+    <h1>Cameras</h1>
+    <p>Explore our collection of latest cameras from top brands.</p>
+    <div class="camera-grid">
+      <!-- Camera 1 -->
+      <div class="camera-card">
+        <img src="https://assets.videomaker.com/2020/09/Canon-EOS-R5-primary.jpg" alt="Camera 1">
+        <h3>Canon EOS R5</h3>
+        <p>Full-frame Mirrorless, 45MP</p>
+        <p>Price: ₹289,499.70</p>
+        <button onclick="addToCart('Canon EOS R5', '₹289,499.70', 'https://assets.videomaker.com/2020/09/Canon-EOS-R5-primary.jpg')">Add to Cart</button>
+      </div>
+      <!-- Camera 2 -->
+      <div class="camera-card">
+        <img src="https://rukminim2.flixcart.com/image/850/1000/kq9ta4w0/dslr-camera/z/e/2/z6-ii-z6-ii-kit-nikon-original-imag4btqzysnpa3w.jpeg?q=90&crop=false" alt="Camera 2">
+        <h3>Nikon Z6 II</h3>
+        <p>Full-frame Mirrorless, 24MP</p>
+        <p>Price: ₹163,499.70</p>
+        <button onclick="addToCart('Nikon Z6 II', '₹163,499.70', 'https://rukminim2.flixcart.com/image/850/1000/kq9ta4w0/dslr-camera/z/e/2/z6-ii-z6-ii-kit-nikon-original-imag4btqzysnpa3w.jpeg?q=90&crop=false')">Add to Cart</button>
+      </div>
+      <!-- Camera 3 -->
+      <div class="camera-card">
+        <img src="https://5.imimg.com/data5/HV/RT/XY/SELLER-1646970/sony-a7r-mark-iv-ilce-7r-m4-full-frame-dslr-camera-body-500x500.jpg" alt="Camera 3">
+        <h3>Sony A7R IV</h3>
+        <p>Full-frame Mirrorless, 61MP</p>
+        <p>Price: ₹266,099.70</p>
+        <button onclick="addToCart('Sony A7R IV', '₹266,099.70', 'https://5.imimg.com/data5/HV/RT/XY/SELLER-1646970/sony-a7r-mark-iv-ilce-7r-m4-full-frame-dslr-camera-body-500x500.jpg')">Add to Cart</button>
+      </div>
+      <!-- More cameras can be added here -->
+    </div>
+  </section>
+
+  <script>
+    function addToCart(name, price, imgSrc) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existingItem = cart.find(item => item.name === name);
+      
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({
+          name: name,
+          price: price,
+          imgSrc: imgSrc,
+          quantity: 1
+        });
+      }
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert('Product added to cart!');
+    }
+
+    // Convert dollar prices to rupees (assuming 1 USD = 74.57 INR, you can update this as per current exchange rates)
+    function convertDollarToRupees(dollarAmount) {
+      const conversionRate = 74.57;
+      return (dollarAmount * conversionRate).toFixed(2);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watches | Your E-commerce Website</title>
+  <style>
+    /* Global Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9f9;
+      background-size: cover;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    header nav ul li {
+      margin-right: 20px;
+    }
+
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    header nav a:hover {
+      color: #ccc;
+    }
+
+    /* Watch Section Styles */
+    #watches {
+      padding: 20px;
+      background-color: #f4f4f4;
+      background-image: none;
+    }
+
+    .watch-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .watch-card {
+      background-color: white;
+      margin: 10px;
+      padding: 15px;
+      border-radius: 5px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 30%;
+      box-sizing: border-box;
+    }
+
+    .watch-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .watch-card h3 {
+      font-size: 20px;
+      color: #333;
+    }
+
+    .watch-card p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .watch-card button {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .watch-card button:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/home.html">Home</a></li>
+        <li><a href="/smartphone.html">Smartphones</a></li>
+        <li><a href="/laptop.html">Laptops</a></li>
+        <li><a href="/watch.html">Watches</a></li>
+        <li><a href="/tv.html">TVs</a></li>
+        <li><a href="/camera.html">Cameras</a></li>
+        <li><a href="/cart.html">Cart</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <!-- Watch Section -->
+  <section id="watches">
+    <h1>Watches</h1>
+    <p>Explore our collection of latest watches from top brands.</p>
+    <div class="watch-grid">
+      <!-- Watch 1 -->
+      <div class="watch-card">
+        <img src="https://cdn2.ethoswatches.com/rolex/pub/media/catalog/product/cache/a68df29a9e2afb500a8d2ce09034894d/m/1/m124060-0001-drp-upright-bba-with-shadow.png" alt="Watch 1">
+        <h3>Rolex Submariner</h3>
+        <p>Stainless Steel, 40mm, Black Dial</p>
+        <p>Price: ₹741,124.87</p>
+        <button onclick="addToCart('Rolex Submariner', '₹741,124.87', 'https://cdn2.ethoswatches.com/rolex/pub/media/catalog/product/cache/a68df29a9e2afb500a8d2ce09034894d/m/1/m124060-0001-drp-upright-bba-with-shadow.png')">Add to Cart</button>
+      </div>
+      <!-- Watch 2 -->
+      <div class="watch-card">
+        <img src="https://cdn1.ethoswatches.com/media/catalog/product/cache/6e5de5bc3d185d8179cdc7258143f41a/o/m/omega-speedmaster-310-30-42-50-01-001-large.jpg" alt="Watch 2">
+        <h3>Omega Speedmaster</h3>
+        <p>Stainless Steel, 42mm, Black Dial</p>
+        <p>Price: ₹453,749.92</p>
+        <button onclick="addToCart('Omega Speedmaster', '₹453,749.92', 'https://cdn1.ethoswatches.com/media/catalog/product/cache/6e5de5bc3d185d8179cdc7258143f41a/o/m/omega-speedmaster-310-30-42-50-01-001-large.jpg')">Add to Cart</button>
+      </div>
+      <!-- Watch 3 -->
+      <div class="watch-card">
+        <img src="https://cdn1.ethoswatches.com/media/catalog/product/cache/6e5de5bc3d185d8179cdc7258143f41a/t/a/tag-heuer-carrera-cbn2013-fc6483-multiple-1.jpg" alt="Watch 3">
+        <h3>Tag Heuer Carrera</h3>
+        <p>Leather Strap, 43mm, White Dial</p>
+        <p>Price: ₹288,374.92</p>
+        <button onclick="addToCart('Tag Heuer Carrera', '₹288,374.92', 'https://cdn1.ethoswatches.com/media/catalog/product/cache/6e5de5bc3d185d8179cdc7258143f41a/t/a/tag-heuer-carrera-cbn2013-fc6483-multiple-1.jpg')">Add to Cart</button>
+      </div>
+      <!-- More watches can be added here -->
+    </div>
+  </section>
+
+  <script>
+    function addToCart(name, price, imgSrc) {
+      // Get cart from localStorage
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      // Create a new item
+      const item = {
+        name: name,
+        price: price,
+        imgSrc: imgSrc,
+        quantity: 1
+      };
+
+      // Add item to cart
+      cart.push(item);
+
+      // Save cart back to localStorage
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      // Alert and redirect to cart page
+      alert('Product added to cart!');
+      window.location.href = '/cart.html';
+    }
+  </script>
+</body>
+</html>

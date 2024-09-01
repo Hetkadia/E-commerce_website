@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart | Your E-commerce Website</title>
+  <style>
+    /* Global Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9f9;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: rgb(55, 96, 207);
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    header nav ul li {
+      margin-right: 20px;
+    }
+
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    header nav a:hover {
+      color: #ccc;
+    }
+
+    /* Cart Section Styles */
+    #cart {
+      padding: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-item img {
+      width: 100px;
+      height: auto;
+      margin-right: 15px;
+    }
+
+    .cart-item h3 {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .cart-item p {
+      margin: 5px 0;
+    }
+
+    .cart-item input {
+      width: 50px;
+      text-align: center;
+    }
+
+    .cart-item .remove-button {
+      background-color: #f44336;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: auto;
+    }
+
+    .cart-item .remove-button:hover {
+      background-color: #d32f2f;
+    }
+
+    .total-price {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    /* Pay Now Button Styles */
+    .pay-now-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+    }
+
+    .pay-now-button button {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .pay-now-button button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/home.html">Home</a></li>
+        <li><a href="/smartphone.html">Smartphones</a></li>
+        <li><a href="/laptop.html">Laptops</a></li>
+        <li><a href="/watch.html">Watches</a></li>
+        <li><a href="/tv.html">TVs</a></li>
+        <li><a href="/camera.html">Cameras</a></li>
+        <li><a href="/cart.html">Cart</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <!-- Cart Section -->
+  <section id="cart">
+    <h1>Cart</h1>
+    <div id="cart-items"></div>
+    <div class="total-price" id="total-price">Total Price: ₹0</div>
+  </section>
+
+  <div class="pay-now-button">
+    <button onclick="payNow()">Pay Now</button>
+  </div>
+
+  <script>
+    function updateCart() {
+      const cartItemsDiv = document.getElementById('cart-items');
+      const totalPriceDiv = document.getElementById('total-price');
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      cartItemsDiv.innerHTML = '';
+
+      let totalPrice = 0;
+
+      cart.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+        
+        itemDiv.innerHTML = `
+          <img src="${item.imgSrc}" alt="${item.name}">
+          <div>
+            <h3>${item.name}</h3>
+            <p>Price: ${item.price}</p>
+            <p>Quantity: <input type="number" value="${item.quantity}" min="1" onchange="updateQuantity('${item.name}', this.value)"></p>
+          </div>
+          <button class="remove-button" onclick="removeItem('${item.name}')">Remove</button>
+        `;
+        
+        cartItemsDiv.appendChild(itemDiv);
+        
+        totalPrice += parseInt(item.price.replace('₹', '').replace(',', '')) * item.quantity;
+      });
+
+      totalPriceDiv.textContent = `Total Price: ₹${totalPrice.toLocaleString()}`;
+
+      // Store total price in localStorage
+      localStorage.setItem('totalPrice', totalPrice);
+    }
+
+    function updateQuantity(name, quantity) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let item = cart.find(i => i.name === name);
+      if (item) {
+        item.quantity = parseInt(quantity);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCart();
+      }
+    }
+
+    function removeItem(name) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart = cart.filter(item => item.name !== name);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCart();
+    }
+
+    function payNow() {
+      // Store total price and redirect to payment page
+      const totalPrice = document.getElementById('total-price').textContent.replace('Total Price: ₹', '').replace(',', '');
+      localStorage.setItem('totalPrice', totalPrice);
+      window.location.href = '/payment.html'; // Redirect to payment page
+    }
+
+    // Initialize cart
+    updateCart();
+  </script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ElectroMart - Your One-Stop Shop for Electronics Gadgets</title>
+    <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid rgb(24, 17, 158);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #337ab7;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            width: 100%;
+        }
+        
+        .logo {
+            margin-bottom: 20px;
+        }
+        
+        .logo img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        
+        .main {
+            font-size: 50px;
+            color: rgb(255, 255, 255);
+        }
+        
+        .contact-link {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .contact-link:hover {
+            color: #ccc;
+        }
+        
+        /* Hero Styles */
+        .hero {
+            background-image: linear-gradient(to bottom, #337ab7, #66CCCC);
+            background-size: 100% 300px;
+            background-position: 0% 100%;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+        
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #0c60a9;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            color: rgb(3, 6, 5);
+        }
+        
+        .hero button {
+            background-color: #337ab7;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        .hero button:hover {
+            background-color: #66CCCC;
+        }
+        
+        /* Categories Styles */
+        .categories {
+            background-color: #f7f7f7;
+            padding: 20px;
+        }
+        
+        .category-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .category {
+            margin: 20px; /* Space between categories */
+            width: 150px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px; /* Optional: for rounded corners */
+            cursor: pointer; /* Show pointer cursor on hover */
+            transition: background-color 0.3s ease; /* Smooth background color change */
+        }
+        
+        .category img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .category h3 {
+            font-size: 18px;
+            margin-top: 10px; /* Added margin-top for spacing */
+        }
+        
+        .category:hover {
+            background-color: #e0e0e0; /* Background color change on hover */
+        }
+        
+        /* Menu Styles */
+        .menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 24px;
+        }
+        
+        .menu-list {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            width: 200px;
+        }
+        
+        .menu-list.show {
+            display: block;
+        }
+        
+        .menu-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .menu-list li {
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .menu-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .menu-list a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+        
+        .menu-list a:hover {
+            background-color: #f7f7f7;
+        }
+        
+        footer {
+            background-color: rgb(65, 113, 226);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            clear: both;
+        }
+
+        footer p {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVg37Jtd1WEUomUWRPkFuRYkdy3MZBPTRuzw&s" alt="ElectroMart Logo">
+        </div>
+        <h1 class="main"><b><i>Electro-Mart Store</i></b></h1>
+
+        <div class="menu" onclick="toggleMenu()">&#8230;</div>
+        <div class="menu-list" id="menuList">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact_us.html">Contact Us</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="login.html">Login/Logout</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Welcome to ElectroMart</h1>
+            <p>Explore the latest electronics gadgets at unbeatable prices</p>
+            <button onclick="scrollToCategories()">Shop Now</button>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <h2>Shop by Category</h2>
+            <div class="category-grid">
+                <div class="category" onclick="window.location.href='smartphone.html'">
+                    <img src="https://img.freepik.com/premium-photo/smartphone-balancing-with-pink-background_23-2150271746.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1725062400&semt=ais_hybrid" alt="Smartphones">
+                    <h3>Smartphones</h3>
+                </div>
+                <div class="category" onclick="window.location.href='laptop.html'">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGSFfNaeI_xunUzzih1php7lnbokwGnLqy7w&s" alt="Laptops">
+                    <h3>Laptops</h3>
+                </div>
+                <div class="category" onclick="window.location.href='watch.html'">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3bjHq5H4QM81SBGUcPQfPlxSoFDCb6HgI5g&s" alt="Smart Watches">
+                    <h3>Smart Watches</h3>
+                </div>
+                <div class="category" onclick="window.location.href='tv.html'">
+                    <img src="https://cdn.jiostore.online/v2/jmd-asp/jdprod/wrkr/jioretailer/products/pictures/item/free/original/SBSKeqRUgk-bpl-32-hd-television-492166140-i-2-1200wx1200h.jpeg" alt="TVs">
+                    <h3>TVs</h3>
+                </div>
+                <div class="category" onclick="window.location.href='camera.html'">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWvWajcowG-YCiOyYg7hJU-9NKKKqROOR3IA&s" alt="Cameras">
+                    <h3>Cameras</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy;2024 ElectroMart</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menuList = document.getElementById('menuList');
+            menuList.classList.toggle('show');
+        }
+
+        function scrollToCategories() {
+            document.getElementById('categories').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

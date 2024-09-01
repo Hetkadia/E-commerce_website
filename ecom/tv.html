@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TVs | Your E-commerce Website</title>
+  <style>
+    /* Global Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9f9;
+      background-size: cover;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    header nav ul li {
+      margin-right: 20px;
+    }
+
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    header nav a:hover {
+      color: #ccc;
+    }
+
+    /* TV Section Styles */
+    #tv {
+      padding: 20px;
+      background-color: #f4f4f4;
+      background-image: none;
+    }
+
+    .tv-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .tv-card {
+      background-color: white;
+      margin: 10px;
+      padding: 15px;
+      border-radius: 5px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 30%;
+      box-sizing: border-box;
+    }
+
+    .tv-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .tv-card h3 {
+      font-size: 20px;
+      color: #333;
+    }
+
+    .tv-card p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .tv-card button {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .tv-card button:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/home.html">Home</a></li>
+        <li><a href="/smartphone.html">Smartphones</a></li>
+        <li><a href="/laptop.html">Laptops</a></li>
+        <li><a href="/watch.html">Watches</a></li>
+        <li><a href="/tv.html">TVs</a></li>
+        <li><a href="/camera.html">Cameras</a></li>
+        <li><a href="/cart.html">Cart</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <!-- TV Section -->
+  <section id="tv">
+    <h1>TVs</h1>
+    <p>Explore our collection of latest TVs from top brands.</p>
+    <div class="tv-grid">
+      <!-- TV 1 -->
+      <div class="tv-card">
+        <img src="https://images.samsung.com/is/image/samsung/p6pim/in/qa98q80cakxxl/gallery/in-qled-98q80c-qa98q80cakxxl-536906370?$720_576_PNG$" alt="TV 1">
+        <h3>Samsung QLED 4K</h3>
+        <p>55" Quantum HDR, 4K UHD</p>
+        <p>Price: ₹124,999.17</p>
+        <button onclick="addToCart('Samsung QLED 4K', '₹124,999.17', 'https://images.samsung.com/is/image/samsung/p6pim/in/qa98q80cakxxl/gallery/in-qled-98q80c-qa98q80cakxxl-536906370?$720_576_PNG$')">Add to Cart</button>
+      </div>
+      <!-- TV 2 -->
+      <div class="tv-card">
+        <img src="https://www.lg.com/content/dam/channel/wcms/in/images/tvs/oled48a3psa_atr_eail_in_c/gallery/1600-1.jpg/_jcr_content/renditions/thum-1600x1062.jpeg" alt="TV 2">
+        <h3>LG OLED TV</h3>
+        <p>65" 4K UHD, Dolby Vision</p>
+        <p>Price: ₹165,999.17</p>
+        <button onclick="addToCart('LG OLED TV', '₹165,999.17', 'https://www.lg.com/content/dam/channel/wcms/in/images/tvs/oled48a3psa_atr_eail_in_c/gallery/1600-1.jpg/_jcr_content/renditions/thum-1600x1062.jpeg')">Add to Cart</button>
+      </div>
+      <!-- TV 3 -->
+      <div class="tv-card">
+        <img src="https://www.sony.co.in/image/ccbe548efa94995a9c034d96a4a6acbb?fmt=pjpeg&wid=330&bgcolor=FFFFFF&bgc=FFFFFF" alt="TV 3">
+        <h3>Sony Bravia</h3>
+        <p>75" 4K Ultra HD, Android TV</p>
+        <p>Price: ₹207,999.17</p>
+        <button onclick="addToCart('Sony Bravia', '₹207,999.17', 'https://www.sony.co.in/image/ccbe548efa94995a9c034d96a4a6acbb?fmt=pjpeg&wid=330&bgcolor=FFFFFF&bgc=FFFFFF')">Add to Cart</button>
+      </div>
+      <!-- More TVs can be added here -->
+    </div>
+  </section>
+
+  <script>
+    function addToCart(name, price, imgSrc) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existingItem = cart.find(item => item.name === name);
+      
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({
+          name: name,
+          price: price,
+          imgSrc: imgSrc,
+          quantity: 1
+        });
+      }
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert('Product added to cart!');
+    }
+  </script>
+</body>
+</html>
